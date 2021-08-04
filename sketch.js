@@ -24,7 +24,7 @@ function setup()
 {
   createCanvas(800,400);
 
-  createEdgeSprites();
+  edges = createEdgeSprites();
   
   space_Wallpaper = createSprite(400,200);
   space_Wallpaper.addImage(space_WallpaperImg);
@@ -35,7 +35,7 @@ function setup()
   astronaut.scale = 0.1;
   astronaut.velocityX = 2;
   astronaut.velocityY = -2;
-  astronaut.setCollider("circle",0,0,1200);
+  astronaut.setCollider("rectangle",0,0,1200,2500);
   astronaut.debug = false;
 
 }
@@ -45,7 +45,6 @@ function draw()
   background(255,255,255);  
   drawSprites();
 
-  edges = createEdgeSprites();
   astronaut.bounceOff(edges);
 
   textSize(20)
@@ -72,7 +71,9 @@ function draw()
   {
     astronaut.addAnimation("brushing", brushImg);
     astronaut.changeAnimation("brushing");
-    astronaut.y = 250;
+
+    astronaut.setCollider("rectangle",-250,100, 1200, 2600);
+    astronaut.debug = false;
 
     fill("yellow");
     text("Up Arrow = Brushing", 20, 40);
@@ -82,7 +83,9 @@ function draw()
   {
     astronaut.addAnimation("gymming", gymImg);
     astronaut.changeAnimation("gymming");
-    astronaut.y = 250;
+
+    astronaut.setCollider("rectangle",0,0, 2000, 2200);
+    astronaut.debug = false;
 
     fill("yellow");
     text("Down Arrow = Gymming", 20, 60);
@@ -92,7 +95,9 @@ function draw()
   {
     astronaut.addAnimation("eating", eatImg);
     astronaut.changeAnimation("eating");
-    astronaut.y = 250;
+
+    astronaut.setCollider("rectangle",-100,-100, 1800, 2200);
+    astronaut.debug = false;
 
     fill("yellow");
     text("Left Arrow = Eating", 20, 80);
@@ -102,9 +107,9 @@ function draw()
   {
     astronaut.addAnimation("bathing", bathImg);
     astronaut.changeAnimation("bathing");
-    astronaut.y = 250;
 
-    //astronaut.setCollider("rectangle",0,0, 1500, 2700);
+    astronaut.setCollider("rectangle",0,0, 1300, 2700);
+    astronaut.debug = false;
 
     fill("yellow");
     text("Right Arrow = Bathing", 20, 100);
